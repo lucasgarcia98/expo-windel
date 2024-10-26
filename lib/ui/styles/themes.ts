@@ -8,9 +8,9 @@ import {
 } from '@react-navigation/native'
 import {
   adaptNavigationTheme,
-  MD3LightTheme,
-  MD3DarkTheme,
   configureFonts,
+  MD3DarkTheme,
+  MD3LightTheme,
 } from 'react-native-paper'
 
 import Colors from '@/lib/ui/styles/colors'
@@ -35,92 +35,6 @@ const BaseDarkTheme = {
 }
 
 const Themes = {
-  light: {
-    default: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.default,
-      },
-    },
-    orange: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.orange,
-      },
-    },
-    red: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.red,
-      },
-    },
-    violet: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.violet,
-      },
-    },
-    indigo: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.indigo,
-      },
-    },
-    blue: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.blue,
-      },
-    },
-    teal: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.teal,
-      },
-    },
-    cyan: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.cyan,
-      },
-    },
-    green: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.green,
-      },
-    },
-    lime: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.lime,
-      },
-    },
-    olive: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.olive,
-      },
-    },
-    brown: {
-      ...BaseLightTheme,
-      colors: {
-        ...BaseLightTheme.colors,
-        ...Colors.light.brown,
-      },
-    },
-  },
   dark: {
     default: {
       ...BaseDarkTheme,

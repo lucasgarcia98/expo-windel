@@ -20,10 +20,7 @@ export {
   ErrorBoundary,
 } from 'expo-router'
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-}
+export const unstable_settings = {}
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -56,8 +53,8 @@ const RootLayout = () => {
 const RootLayoutNav = () => {
   const colorScheme = useColorScheme()
   const [settings, setSettings] = React.useState<Setting>({
-    theme: 'auto',
-    color: 'default',
+    theme: 'dark',
+    color: 'red',
     language: 'br',
   })
 
@@ -91,13 +88,7 @@ const RootLayoutNav = () => {
   }, [])
 
   return (
-    <PaperProvider
-      theme={
-        Themes[
-          settings.theme === 'auto' ? (colorScheme ?? 'dark') : settings.theme
-        ][settings.color]
-      }
-    >
+    <PaperProvider theme={Themes['dark'][settings.color]}>
       <Stack
         screenOptions={{
           animation: 'slide_from_bottom',
@@ -106,10 +97,6 @@ const RootLayoutNav = () => {
           ),
         }}
       >
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="drawer" options={{ headerShown: false }} />
-        <Stack.Screen name="search" options={{ title: Locales.t('search') }} />
         <Stack.Screen
           name="modal"
           options={{ title: Locales.t('titleModal'), presentation: 'modal' }}
