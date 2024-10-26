@@ -8,7 +8,7 @@ import { Button, HelperText, Text, TextInput } from 'react-native-paper'
 import * as Yup from 'yup'
 
 import Locales from '@/lib/locales'
-const TabsHome = () => (
+const Home = () => (
   <Surface style={styles.screen}>
     <Image
       alt="Logo"
@@ -22,9 +22,6 @@ const TabsHome = () => (
       }}
     />
 
-    <Text variant="headlineLarge" style={{ textAlign: 'center' }}>
-      {Locales.t('welcome')}
-    </Text>
     <Text variant="bodyLarge" style={{ textAlign: 'center' }}>
       {Locales.t('messageWelcome')}
     </Text>
@@ -92,4 +89,4 @@ const TabsHome = () => (
   </Surface>
 )
 
-export default TabsHome
+export default Home

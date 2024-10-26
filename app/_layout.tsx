@@ -1,3 +1,6 @@
+import Locales from '@/lib/locales'
+import { Setting } from '@/lib/types'
+import { StackHeader, Themes } from '@/lib/ui'
 import {
   JetBrainsMono_400Regular,
   useFonts,
@@ -10,54 +13,42 @@ import * as SecureStore from 'expo-secure-store'
 import React from 'react'
 import { Platform, useColorScheme } from 'react-native'
 import { PaperProvider } from 'react-native-paper'
-
-import Locales from '@/lib/locales'
-import { Setting } from '@/lib/types'
-import { StackHeader, Themes } from '@/lib/ui'
-
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router'
-
-export const unstable_settings = {}
-
+export const unstable_settings = {
+  initialRouteName: 'home',
+}
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
-
 const RootLayout = () => {
   const [loaded, error] = useFonts({
     NotoSans_400Regular,
     JetBrainsMono_400Regular,
     ...MaterialCommunityIcons.font,
   })
-
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   React.useEffect(() => {
     if (error) throw error
   }, [error])
-
   React.useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync()
     }
   }, [loaded])
-
   if (!loaded) {
     return null
   }
-
   return <RootLayoutNav />
 }
-
 const RootLayoutNav = () => {
   const colorScheme = useColorScheme()
   const [settings, setSettings] = React.useState<Setting>({
-    theme: 'dark',
-    color: 'red',
+    theme: 'auto',
+    color: 'default',
     language: 'br',
   })
-
   // Load settings from the device
   React.useEffect(() => {
     if (Platform.OS !== 'web') {
@@ -67,26 +58,21 @@ const RootLayoutNav = () => {
             (res) => console.log(res),
           )
         }
-
         setSettings(JSON.parse(result ?? JSON.stringify(settings)))
       })
     } else {
       setSettings({ ...settings, theme: colorScheme ?? 'light' })
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   React.useEffect(() => {
     if (settings.language === 'auto') {
       Locales.locale = Localization.getLocales()[0].languageCode ?? 'en'
     } else {
       Locales.locale = settings.language
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
   return (
     <PaperProvider theme={Themes['dark'][settings.color]}>
       <Stack
@@ -98,12 +84,11 @@ const RootLayoutNav = () => {
         }}
       >
         <Stack.Screen
-          name="modal"
-          options={{ title: Locales.t('titleModal'), presentation: 'modal' }}
+          name="home"
+          options={{ headerShown: false, title: 'Windel Sistemas' }}
         />
       </Stack>
     </PaperProvider>
   )
 }
-
 export default RootLayout
